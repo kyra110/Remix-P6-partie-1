@@ -1,0 +1,49 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: fantasy;
+}
+header,
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: antiquewhite;
+  height: 80px;
+}
+.filters {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  background-color: beige;
+  button {
+    background-color: white;
+    padding: 5px 10px;
+    border-radius: 25px;
+    border: none;
+    cursor: pointer;
+    &:focus {
+      background-color: black;
+      color: white;
+    }
+  }
+}
+main {
+  min-height: 740px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  .galleryStyle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 30%;
+    width: 25%;
+    img {
+      height: 90%;
+      width: 90%;
+    }
+  }
+}

@@ -1,0 +1,151 @@
+{
+  "users": [],
+  "categories": [
+    {
+      "id": 1,
+      "name": "Motos"
+    },
+    {
+      "id": 2,
+      "name": "Scooters"
+    },
+    {
+      "id": 3,
+      "name": "Voitures"
+    }
+  ],
+  "works": [
+    {
+      "id": 1,
+      "title": "Moto 1",
+      "imageUrl": "images/moto1.png",
+      "categoryId": 1,
+      "userId": 1,
+      "category": {
+        "id": 1,
+        "name": "Motos"
+      }
+    },
+    {
+      "id": 2,
+      "title": "Moto 2",
+      "imageUrl": "images/moto2.png",
+      "categoryId": 1,
+      "userId": 1,
+      "category": {
+        "id": 1,
+        "name": "Motos"
+      }
+    },
+    {
+      "id": 3,
+      "title": "Moto 3",
+      "imageUrl": "images/moto3.png",
+      "categoryId": 1,
+      "userId": 1,
+      "category": {
+        "id": 1,
+        "name": "Motos"
+      }
+    },
+    {
+      "id": 4,
+      "title": "Moto 4",
+      "imageUrl": "images/moto4.png",
+      "categoryId": 1,
+      "userId": 1,
+      "category": {
+        "id": 1,
+        "name": "Motos"
+      }
+    },
+    {
+      "id": 5,
+      "title": "Scooter 1",
+      "imageUrl": "images/scooter1.png",
+      "categoryId": 2,
+      "userId": 1,
+      "category": {
+        "id": 2,
+        "name": "Scooters"
+      }
+    },
+    {
+      "id": 6,
+      "title": "Scooter 2",
+      "imageUrl": "images/scooter2.png",
+      "categoryId": 2,
+      "userId": 1,
+      "category": {
+        "id": 2,
+        "name": "Scooters"
+      }
+    },
+    {
+      "id": 7,
+      "title": "Scooter 3",
+      "imageUrl": "images/scooter3.png",
+      "categoryId": 2,
+      "userId": 1,
+      "category": {
+        "id": 2,
+        "name": "Scooters"
+      }
+    },
+    {
+      "id": 8,
+      "title": "Scooter 4",
+      "imageUrl": "images/scooter4.png",
+      "categoryId": 2,
+      "userId": 1,
+      "category": {
+        "id": 2,
+        "name": "Scooters"
+      }
+    },
+    {
+      "id": 9,
+      "title": "Voiture 1",
+      "imageUrl": "images/voiture1.png",
+      "categoryId": 3,
+      "userId": 1,
+      "category": {
+        "id": 3,
+        "name": "Voitures"
+      }
+    },
+    {
+      "id": 10,
+      "title": "Voiture 2",
+      "imageUrl": "images/voiture2.png",
+      "categoryId": 3,
+      "userId": 1,
+      "category": {
+        "id": 3,
+        "name": "Voitures"
+      }
+    },
+    {
+      "id": 11,
+      "title": "Voiture 3",
+      "imageUrl": "images/voiture3.png",
+      "categoryId": 3,
+      "userId": 1,
+      "category": {
+        "id": 3,
+        "name": "Voitures"
+      }
+    },
+    {
+      "id": 12,
+      "title": "Voiture 4",
+      "imageUrl": "images/voiture4.png",
+      "categoryId": 3,
+      "userId": 1,
+      "category": {
+        "id": 3,
+        "name": "Voitures"
+      }
+    }
+  ]
+}
