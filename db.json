@@ -1,5 +1,12 @@
 {
-  "users": [],
+  "users": [
+    {
+      "id": 1,
+      "email": "kyraCondin@gmail.com",
+      "password": "Kyra",
+      "admin": true
+    }
+  ],
   "categories": [
     {
       "id": 1,
@@ -14,7 +21,7 @@
       "name": "Voitures"
     }
   ],
-  "works": [
+  "garage": [
     {
       "id": 1,
       "title": "Moto 1",
