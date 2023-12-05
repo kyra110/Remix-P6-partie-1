@@ -78,7 +78,7 @@ async function filterCategoy() {
 }
 filterCategoy();
 
-// Si l'utilisateur et conecté
+// ******************* Si l'utilisateur et conecté ***********************
 
 const loged = window.sessionStorage.loged;
 const admin = document.querySelector("header nav .admin");
@@ -89,5 +89,53 @@ if (loged == "true") {
   logout.textContent = "logout";
   logout.addEventListener("click", () => {
     window.sessionStorage.loged = false;
+  });
+}
+
+//Au click sur Admin affichage des modales suite P6-p3
+const containerModals = document.querySelector(".containerModals");
+const mark = document.querySelector(".fa-xmark");
+const garageModal = document.querySelector(".garageModal");
+
+admin.addEventListener("click", () => {
+  // console.log(containerModals);
+  containerModals.style.display = "flex";
+});
+// gere la fermeture de la modale sur la croix
+mark.addEventListener("click", () => {
+  containerModals.style.display = "none";
+});
+//gere la fermeture sur le container en dehor du garage
+containerModals.addEventListener("click", (e) => {
+  // console.log(e.target.className);
+  if (e.target.className == "containerModals") {
+    containerModals.style.display = "none";
+  }
+});
+//Affichage du garage dans la galerie
+async function displayGarageModal() {
+  const garage = await getVehicules();
+  garage.forEach((vehicule) => {
+    const figure = document.createElement("figure");
+    const img = document.createElement("img");
+    const span = document.createElement("span");
+    span.innerHTML = `<i class="fa-solid fa-trash-can"></i>`;
+    span.id = vehicule.id;
+    img.src = vehicule.imageUrl;
+    figure.appendChild(img);
+    figure.appendChild(span);
+    garageModal.appendChild(figure);
+  });
+  deleteVehicule();
+}
+displayGarageModal();
+
+//supréssion d'une image dans la modal
+function deleteVehicule() {
+  const trashAll = document.querySelectorAll(".garageModal span");
+  trashAll.forEach((trash) => {
+    trash.addEventListener("click", (e) => {
+      console.log(trash.id);
+    });
   });
 }
