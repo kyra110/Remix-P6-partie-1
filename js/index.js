@@ -97,22 +97,26 @@ if (loged == "true") {
 const containerModals = document.querySelector(".containerModals");
 const mark = document.querySelector(".fa-xmark");
 const garageModal = document.querySelector(".garageModal");
-
-admin.addEventListener("click", () => {
-  // console.log(containerModals);
-  containerModals.style.display = "flex";
-});
-// gere la fermeture de la modale sur la croix
-mark.addEventListener("click", () => {
-  containerModals.style.display = "none";
-});
-//gere la fermeture sur le container en dehor du garage
-containerModals.addEventListener("click", (e) => {
-  // console.log(e.target.className);
-  if (e.target.className == "containerModals") {
+//Fonctionqui gère l'affichage de la modal du garage
+function manageDisplayModalGarage(params) {
+  admin.addEventListener("click", () => {
+    // console.log(containerModals);
+    containerModals.style.display = "flex";
+  });
+  // gere la fermeture de la modale sur la croix
+  mark.addEventListener("click", () => {
     containerModals.style.display = "none";
-  }
-});
+  });
+  //gere la fermeture sur le container en dehor du garage
+  containerModals.addEventListener("click", (e) => {
+    // console.log(e.target.className);
+    if (e.target.className == "containerModals") {
+      containerModals.style.display = "none";
+    }
+  });
+}
+manageDisplayModalGarage();
+
 //Affichage du garage dans la galerie
 async function displayGarageModal() {
   garageModal.innerHTML = "";
