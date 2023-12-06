@@ -13,6 +13,7 @@ getVehicules();
 
 /*Affichage des works dans le dom*/
 async function displayVehicules() {
+  gallery.innerHTML = "";
   const vehicules = await getVehicules();
   vehicules.forEach((vehicule) => {
     createVehicules(vehicule);
@@ -114,6 +115,7 @@ containerModals.addEventListener("click", (e) => {
 });
 //Affichage du garage dans la galerie
 async function displayGarageModal() {
+  garageModal.innerHTML = "";
   const garage = await getVehicules();
   garage.forEach((vehicule) => {
     const figure = document.createElement("figure");
@@ -135,7 +137,99 @@ function deleteVehicule() {
   const trashAll = document.querySelectorAll(".garageModal span");
   trashAll.forEach((trash) => {
     trash.addEventListener("click", (e) => {
-      console.log(trash.id);
+      id = trash.id;
+      const init = {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+      };
+      fetch("http://localhost:3000/garage/" + id, init)
+        .then((response) => {
+          if (!response.ok) {
+            console.log("le delete n'a pas marché !");
+          }
+          return response.json();
+        })
+        .then((data) => {
+          console.log("la delete a réussi voici la data :", data);
+          displayGarageModal();
+          displayVehicules();
+        });
     });
   });
 }
+//Faire aparaitre la deuxieme modale un fois son html fini
+const btnAddModal = document.querySelector(".modalGarage button");
+const modalAddVehicule = document.querySelector(".modalAddVehicule");
+const modalGarage = document.querySelector(".modalGarage");
+const arrowleft = document.querySelector(".modalAddVehicule .fa-arrow-left");
+const markAdd = document.querySelector(".modalAddVehicule .fa-xmark");
+
+function displayAddModal() {
+  btnAddModal.addEventListener("click", () => {
+    modalAddVehicule.style.display = "flex";
+    modalGarage.style.display = "none";
+  });
+  arrowleft.addEventListener("click", () => {
+    modalAddVehicule.style.display = "none";
+    modalGarage.style.display = "flex";
+  });
+  markAdd.addEventListener("click", () => {
+    containerModals.style.display = "none";
+    window.location = "index.html";
+  });
+}
+displayAddModal();
+// faire la prévisualisation
+const previewImg = document.querySelector(".containerFile img");
+const inputFile = document.querySelector(".containerFile input");
+const labelFile = document.querySelector(".containerFile label");
+const iconFile = document.querySelector(".containerFile .fa-image");
+const pFile = document.querySelector(".containerFile p");
+//Ecouter les changement sur l'input file
+inputFile.addEventListener("change", () => {
+  const file = inputFile.files[0];
+  console.log(file);
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = function (e) {
+      previewImg.src = e.target.result;
+      previewImg.style.display = "flex";
+      labelFile.style.display = "none";
+      iconFile.style.display = "none";
+      pFile.style.display = "none";
+    };
+    reader.readAsDataURL(file);
+  }
+});
+//Faire un POST ajouter un vehicule
+const form = document.querySelector("form");
+const title = document.querySelector("#title");
+const category = document.querySelector("#category");
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const formData = {
+    title: title.value,
+    categoryId: category.value,
+    category: {
+      id: category.value,
+      name: category.options[category.selectedIndex].text,
+    },
+  };
+  try {
+    const response = await fetch("http://localhost:3000/garage", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    })
+      .then((response) => {
+        response.json();
+      })
+      .then((data) => {
+        console.log("Nouveau Vehicule crée !" + data);
+      });
+  } catch (error) {
+    console.log("une erreur est survenue lors de l'envoi");
+  }
+});

@@ -119,6 +119,79 @@
   color: white;
 }
 
+.modalAddVehicule {
+  display: none;
+  justify-content: space-around;
+  flex-direction: column;
+  align-items: center;
+  height: 50%;
+  width: 50%;
+  background-color: whitesmoke;
+  border-radius: 5px;
+  position: relative;
+}
+.modalAddVehicule .fa-arrow-left {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  cursor: pointer;
+}
+.modalAddVehicule .fa-xmark {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+}
+.modalAddVehicule form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 80%;
+  width: 80%;
+  gap: 10px;
+}
+.modalAddVehicule form .containerFile {
+  background-color: grey;
+  height: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 5px;
+}
+.modalAddVehicule form .containerFile label {
+  background-color: black;
+  color: white;
+  border-radius: 15px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+.modalAddVehicule form .containerFile input {
+  display: none;
+}
+.modalAddVehicule form .containerFile img {
+  display: none;
+  max-width: 100%;
+  height: 100%;
+}
+.modalAddVehicule form .containerFile .fa-image {
+  font-size: 3rem;
+}
+.modalAddVehicule form .containerFile p {
+  font-weight: 300;
+  font-size: 0.5rem;
+}
+.modalAddVehicule form .button {
+  background-color: white;
+  padding: 5px 10px;
+  border-radius: 25px;
+  border: none;
+  cursor: pointer;
+}
+.modalAddVehicule form .button:focus {
+  background-color: black;
+  color: white;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -141,6 +214,7 @@ footer {
   align-items: center;
   background-color: antiquewhite;
   height: 80px;
+  padding: 20px;
 }
 
 header {
@@ -149,6 +223,7 @@ header {
   align-items: center;
   background-color: antiquewhite;
   height: 80px;
+  padding: 20px;
 }
 header nav {
   display: flex;
@@ -186,7 +261,6 @@ main {
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  min-height: 750px;
 }
 main .galleryStyle {
   display: flex;

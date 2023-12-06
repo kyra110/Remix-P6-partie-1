@@ -1,5 +1,6 @@
 @import "login";
 @import "modal";
+@import "modalAdd";
 * {
   margin: 0;
   padding: 0;
@@ -20,6 +21,7 @@ footer {
   align-items: center;
   background-color: antiquewhite;
   height: 80px;
+  padding: 20px;
 }
 header {
   display: flex;
@@ -27,6 +29,7 @@ header {
   align-items: center;
   background-color: antiquewhite;
   height: 80px;
+  padding: 20px;
   nav {
     display: flex;
     align-items: center;
@@ -62,7 +65,6 @@ main {
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  min-height: 750px;
   .galleryStyle {
     display: flex;
     justify-content: center;
