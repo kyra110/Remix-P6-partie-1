@@ -119,121 +119,161 @@ manageDisplayModalGarage();
 
 //Affichage du garage dans la galerie
 async function displayGarageModal() {
-  garageModal.innerHTML = "";
-  const garage = await getVehicules();
-  garage.forEach((vehicule) => {
-    const figure = document.createElement("figure");
-    const img = document.createElement("img");
-    const span = document.createElement("span");
-    span.innerHTML = `<i class="fa-solid fa-trash-can"></i>`;
-    span.id = vehicule.id;
-    img.src = vehicule.imageUrl;
-    figure.appendChild(img);
-    figure.appendChild(span);
-    garageModal.appendChild(figure);
+  garageModal.innerHTML =""
+  const garage = await getVehicules()
+  garage.forEach(vehicule => {
+    const figure = document.createElement("figure")
+    const img = document.createElement("img")
+    const span = document.createElement("span")
+    const trash =document.createElement("i")
+    trash.classList.add("fa-solid","fa-trash-can")
+    trash.id = vehicule.id
+    img.src = vehicule.imageUrl
+    span.appendChild(trash)
+    figure.appendChild(span)
+    figure.appendChild(img)
+    garageModal.appendChild(figure)
   });
-  deleteVehicule();
+  deleteVehicule()
 }
-displayGarageModal();
+displayGarageModal()
 
 //supréssion d'une image dans la modal
 function deleteVehicule() {
-  const trashAll = document.querySelectorAll(".garageModal span");
-  trashAll.forEach((trash) => {
-    trash.addEventListener("click", (e) => {
-      id = trash.id;
-      const init = {
-        method: "DELETE",
-        headers: { "Content-Type": "application/json" },
-      };
-      fetch("http://localhost:3000/garage/" + id, init)
-        .then((response) => {
-          if (!response.ok) {
-            console.log("le delete n'a pas marché !");
-          }
-          return response.json();
-        })
-        .then((data) => {
-          console.log("la delete a réussi voici la data :", data);
-          displayGarageModal();
-          displayVehicules();
-        });
-    });
+  const trashAll = document.querySelectorAll(".fa-trash-can")
+  trashAll.forEach(trash => {
+    trash.addEventListener("click",(e)=>{
+      const id = trash.id
+      const init ={
+        method:"DELETE",
+        headers:{"content-Type":"application/json"},
+      }
+      fetch("http://localhost:3000/garage/" +id,init)
+      .then((response)=>{
+        if (!response.ok) {
+          console.log("le delete n'a pas marché !")
+        }
+        return response.json()
+      })
+      .then((data)=>{
+        console.log("Le delete a réussi voici la data :",data)
+        displayGarageModal()
+        displayVehicules()
+      })
+    })
   });
 }
-//Faire aparaitre la deuxieme modale un fois son html fini
-const btnAddModal = document.querySelector(".modalGarage button");
-const modalAddVehicule = document.querySelector(".modalAddVehicule");
-const modalGarage = document.querySelector(".modalGarage");
-const arrowleft = document.querySelector(".modalAddVehicule .fa-arrow-left");
-const markAdd = document.querySelector(".modalAddVehicule .fa-xmark");
+//Faire aparaitre la deuxieme modale une fois le html fini
+const btnAddModal = document.querySelector(".modalGarage button")
+const modalAddVehicule = document.querySelector(".modalAddVehicule")
+const modalGarage = document.querySelector(".modalGarage")
+const arrowLeft = document.querySelector(".fa-arrow-left")
+const markAdd = document.querySelector(".modalAddVehicule .fa-xmark")
 
 function displayAddModal() {
-  btnAddModal.addEventListener("click", () => {
-    modalAddVehicule.style.display = "flex";
-    modalGarage.style.display = "none";
-  });
-  arrowleft.addEventListener("click", () => {
-    modalAddVehicule.style.display = "none";
-    modalGarage.style.display = "flex";
-  });
-  markAdd.addEventListener("click", () => {
-    containerModals.style.display = "none";
-    window.location = "index.html";
-  });
+  btnAddModal.addEventListener("click",()=>{
+    modalAddVehicule.style.display = "flex"
+    modalGarage.style.display = "none"
+  })
+  arrowLeft.addEventListener("click",()=>{
+    modalAddVehicule.style.display = "none"
+    modalGarage.style.display = "flex"
+  })
+  markAdd.addEventListener("click",()=>{
+    containerModals.style.display = "none"
+  })
 }
-displayAddModal();
-// faire la prévisualisation
-const previewImg = document.querySelector(".containerFile img");
-const inputFile = document.querySelector(".containerFile input");
-const labelFile = document.querySelector(".containerFile label");
-const iconFile = document.querySelector(".containerFile .fa-image");
-const pFile = document.querySelector(".containerFile p");
-//Ecouter les changement sur l'input file
-inputFile.addEventListener("change", () => {
-  const file = inputFile.files[0];
+
+displayAddModal()
+// Faire la prévisualisation de l'image
+
+const previewImg = document.querySelector(".containerFile img")
+const inputFile = document.querySelector(".containerFile input")
+const labelFile = document.querySelector(".containerFile label")
+const inconFile = document.querySelector(".containerFile .fa-image")
+const pFile = document.querySelector(".containerFile p")
+
+//Ecouter les changements sur l'input file
+
+inputFile.addEventListener("change",()=>{
+  const file = inputFile.files[0]
   console.log(file);
   if (file) {
     const reader = new FileReader();
-    reader.onload = function (e) {
-      previewImg.src = e.target.result;
-      previewImg.style.display = "flex";
-      labelFile.style.display = "none";
-      iconFile.style.display = "none";
-      pFile.style.display = "none";
-    };
+    reader.onload = function (e){
+      previewImg.src = e.target.result
+      previewImg.style.display = "flex"
+      labelFile.style.display = "none"
+      inconFile.style.display = "none"
+      pFile.style.display = "none"
+    }
     reader.readAsDataURL(file);
   }
-});
-//Faire un POST ajouter un vehicule
-const form = document.querySelector("form");
-const title = document.querySelector("#title");
-const category = document.querySelector("#category");
-form.addEventListener("submit", async (e) => {
-  e.preventDefault();
+})
+
+//Creer une liste de catégories dans l'input select
+async function displayCategoryModal (){
+  const select = document.querySelector(".modalAddVehicule select")
+  const categorys = await getCategorys()
+  categorys.forEach(category => {
+    const option = document.createElement("option")
+    option.value = category.id
+    option.textContent = category.name
+    select.appendChild(option)
+  })
+}
+displayCategoryModal()
+
+// Faire un POST ajouter un vehicule 
+const form = document.querySelector(".modalAddVehicule form")
+const title = document.querySelector(".modalAddVehicule #title")
+const category = document.querySelector(".modalAddVehicule #category")
+
+form.addEventListener("submit",async (e)=>{
+  e.preventDefault()
   const formData = {
-    title: title.value,
-    categoryId: category.value,
-    category: {
-      id: category.value,
-      name: category.options[category.selectedIndex].text,
+    title:title.value,
+    categoryId:category.value,
+    imageUrl:previewImg.src,
+    category:{
+      id:category.value,
+      name: category.options[category.selectedIndex].textContent,
     },
   };
-  try {
-    const response = await fetch("http://localhost:3000/garage", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    })
-      .then((response) => {
-        response.json();
-      })
-      .then((data) => {
-        console.log("Nouveau Vehicule crée !" + data);
-      });
-  } catch (error) {
-    console.log("une erreur est survenue lors de l'envoi");
-  }
-});
+  fetch("http://localhost:3000/garage",{
+    method:"POST",
+    body:JSON.stringify(formData),
+    headers:{
+      "content-Type":"application/json"
+    },
+  })
+  .then(response => response.json())
+  .then(data =>{
+    console.log(data);
+    console.log("voici le vehicule ajouté",data)
+    displayGarageModal()
+    displayVehicules()
+  })
+  .catch(error => console.log("voici l'erreur",error))
+})
+
+// Fonction qui vérifie si tout les inputs sont remplis
+function verifFormCompleted() {
+  const buttonValidForm = document.querySelector(".modalAddVehicule button");
+  const form = document.querySelector(".modalAddVehicule form");
+  const title = document.querySelector(".modalAddVehicule #title");
+  const category = document.querySelector(".modalAddVehicule #category");
+  const inputFile = document.querySelector(".containerFile input");
+  
+
+  form.addEventListener("input", () => {
+    if (title.value !== "" && category.value !== "" && inputFile.value !== "") {
+      buttonValidForm.classList.add("valid");
+      buttonValidForm.disabled = false;
+    } else {
+      buttonValidForm.classList.remove("valid");
+      buttonValidForm.disabled = true;
+    }
+  });
+}
+verifFormCompleted();

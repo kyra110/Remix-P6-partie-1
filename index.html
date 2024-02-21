@@ -33,7 +33,7 @@
       <h2>Mes Vehicules</h2>
       <div class="garageModal"></div>
       <button class="button">Ajouter un Véhicule</button>
-    </div>
+    </div> 
     <div class="modalAddVehicule">
       <span><i class="fa-solid fa-arrow-left"></i></span>
       <span><i class="fa-solid fa-xmark"></i></span>
@@ -41,20 +41,16 @@
       <form>
         <div class="containerFile">
           <span><i class="fa-regular fa-image"></i></span>
-          <label for="file">+ Ajouter photo</label>
+          <label for="file">+Ajouter photo</label>
           <input type="file" id="file" name="imageUrl">
           <img src="#" alt="Aperçut de l'image">
-          <p>jpg,png: 4mo max</p>
+          <p>jpg,png: 4 mo max</p>
         </div>
         <label for="title">Titre</label>
         <input type="text" id="title" name="title">
         <label for="category">Catégorie</label>
-        <select name="categoryId" id="category">
-          <option value="1">Motos</option>
-          <option value="2">Scooters</option>
-          <option value="3">Voitures</option>
-        </select>
-        <button class="button">Valider</button>
+        <select name="categoryId" id="category"></select>
+        <button class="button" disabled>Valider</button>
       </form>
     </div>
   </div>

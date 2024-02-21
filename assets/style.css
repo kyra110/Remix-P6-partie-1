@@ -108,6 +108,18 @@
   color: white;
 }
 
+.containerModals {
+  display: none;
+  position: fixed;
+  max-width: 1440px;
+  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(128, 128, 128, 0.356);
+}
+
 .modalAddVehicule {
   display: none;
   justify-content: space-around;
@@ -121,14 +133,16 @@
 }
 .modalAddVehicule .fa-arrow-left {
   position: absolute;
-  top: 20px;
-  left: 20px;
+  top: 10px;
+  left: 10px;
+  font-size: 20px;
   cursor: pointer;
 }
 .modalAddVehicule .fa-xmark {
   position: absolute;
-  top: 20px;
-  right: 20px;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
   cursor: pointer;
 }
 .modalAddVehicule form {
@@ -152,22 +166,17 @@
   color: white;
   border-radius: 15px;
   padding: 5px 10px;
-  cursor: pointer;
 }
 .modalAddVehicule form .containerFile input {
   display: none;
+}
+.modalAddVehicule form .containerFile .fa-image {
+  font-size: 3rem;
 }
 .modalAddVehicule form .containerFile img {
   display: none;
   max-width: 100%;
   height: 100%;
-}
-.modalAddVehicule form .containerFile .fa-image {
-  font-size: 3rem;
-}
-.modalAddVehicule form .containerFile p {
-  font-weight: 300;
-  font-size: 0.5rem;
 }
 .modalAddVehicule form .button {
   background-color: white;
@@ -180,17 +189,8 @@
   background-color: black;
   color: white;
 }
-
-.containerModals {
-  display: none;
-  position: fixed;
-  max-width: 1440px;
-  margin: 0 auto;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  width: 100%;
-  background-color: rgba(128, 128, 128, 0.356);
+.modalAddVehicule form .valid {
+  background-color: chartreuse;
 }
 
 * {
